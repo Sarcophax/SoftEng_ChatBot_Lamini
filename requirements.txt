@@ -1,0 +1,12 @@
+chromadb==0.3.26
+requests==2.31.0
+einops
+accelerate==0.25.0
+torch==2.1.1
+bitsandbytes
+sentence-transformers
+langchain==0.0.231
+Jinja2==3.1.2
+fastapi==0.104.1
+pypdf
+pydantic==1.10.13

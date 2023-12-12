@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='/css/style.css') }}"
+    />
+    <script type="text/javascript" src="/static/script/chatgpt.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="logo">
+      <img
+        src="/static/images/perpetual-logo.png"
+        alt="University of Perpetual Help System Dalta Logo"
+      />
+    </div>
+    <div class="center">
+      <h2>University ChatBot</h2>
+      <form action="javascript:void(0)">
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+          <input
+            id="chatMessage"
+            class="input-field"
+            type="text"
+            placeholder="Enter message..."
+            name="usrnm"
+          />
+        </div>
+        <button type="submit" id="sendBtn" class="btn">Send</button>
+      </form>
+      <div id="loadingContainer" class="container darker d-none">
+        <p>AI is thinking...</p>
+      </div>
+      <div id="chatOutput"></div>
+    </div>
+  </body>
+</html>
