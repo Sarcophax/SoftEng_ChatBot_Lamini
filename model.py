@@ -4,7 +4,7 @@ import torch
 from langchain.llms import HuggingFacePipeline
 from langchain.embeddings import SentenceTransformerEmbeddings
 from langchain.vectorstores import Chroma
-from langchain.chains import RetrievalQA
+from langchain.chains import ConversationalRetrievalChain
 
 persist_directory = 'db'
 
@@ -31,12 +31,14 @@ def qa_llm():
     embedding = SentenceTransformerEmbeddings(model_name="all-mpnet-base-v2")
     vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
     retriever = vectordb.as_retriever()
-    qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
+    qa = ConversationalRetrievalChain.from_llm(llm=llm,chain_type="stuff",retriever=retriever)
     return qa
 
+chat_history = []
 def process_answer(prompt:str):
-    instruction = prompt
+    question = prompt
     qa = qa_llm()
-    generated_text = qa(instruction)
-    answer = generated_text['result']
+    generated_text = qa({"question":question, "chat_history": chat_history})
+    answer = generated_text["answer"]
+    chat_history.append((question, generated_text["answer"]))
     return answer
